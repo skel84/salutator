@@ -18,6 +18,14 @@ metadata:
   name: salutator
   labels:
     app: salutator
+  annotations:
+    pod.beta.kubernetes.io/init-containers: '[
+        {
+            "name": "init-mydb",
+            "image": "busybox:1.28",
+            "command": ["sh", "-c", "until nc -vz salutator-mysql 3306; do echo waiting for mydb; sleep 2; done;"]
+        }
+    ]'
 spec:
   selector:
     matchLabels:
@@ -32,7 +40,7 @@ spec:
         tier: frontend
     spec:
       containers:
-      - image: skel84/salutator:2
+      - image: skel84/salutator:3
         name: salutator
         env:
           - name: SALUTATOR_DB_PASSWORD

@@ -61,7 +61,19 @@ spec:
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
+      readinessProbe:
+        exec:
+          command:
+          - mysql
+          - -hlocalhost
+          - -uroot
+          - -p$MYSQL_ROOT_PASSWORD
+          - hello
+          - -e"SELECT * from salutation"
+        initialDelaySeconds: 20
+      periodSeconds: 5
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: mysql-pv-claim
+

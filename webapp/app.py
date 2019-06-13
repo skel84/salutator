@@ -9,8 +9,6 @@ app = Flask(__name__)
 
 password = os.environ["SALUTATOR_DB_PASSWORD"]
 
-print "the password is " + password
-
 try:
 	connection = mysql.connector.connect(host="salutator-mysql", user="root", passwd=password, database="hello")
 except mysql.connector.Error as err:
