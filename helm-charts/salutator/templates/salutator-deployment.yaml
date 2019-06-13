@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: salutator
+  labels:
+    app: salutator
+spec:
+  ports:
+    - port: 5000
+  selector:
+    app: salutator
+    tier: frontend
+  type: NodePort
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: salutator
+  labels:
+    app: salutator
+spec:
+  selector:
+    matchLabels:
+      app: salutator
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: salutator
+        tier: frontend
+    spec:
+      containers:
+      - image: skel84/salutator:2
+        name: salutator
+        env:
+          - name: SALUTATOR_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-pass
+                key: password
+        ports:
+        - containerPort: 5000
+          name: salutator
+
