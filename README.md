@@ -9,10 +9,9 @@ Here are the steps
 2. Initialize Helm: ```helm init```
 3. Wait until Helm is ready 
 4. Install the salutator: ```helm install salutator```
-5. Wait until the pods are ready. The fronted pod might fail in the first try if the DB is not ready. The process can be sped up by scaling down and up the service:
+5. Wait until the pods are ready. The fronted pod might fail at the first try if the DB is not ready. Check when both pods are up and running
 ```sh
-kubectl scale deployment salutator --replicas=0
-kubectl scale deployment salutator --replicas=1
+kubectl get pods
 ```
 5. To get the url to use in the browser run: ```minikube service salutator --url```
 
