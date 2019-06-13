@@ -5,7 +5,7 @@ To run test you need to have kubectl, helm and minikuube installed on you comput
 ### Installation
 
 Here are the steps 
-1. Clone the repo and move into the helm charts folder: ```https://github.com/skel84/salutator.git && cd salutator/helm-charts```
+1. Clone the repo and move into the helm charts folder: ```git clone https://github.com/skel84/salutator.git && cd salutator/helm-charts```
 2. Initialize Helm: ```helm init```
 3. Wait until Helm is ready 
 4. Install the salutator: ```helm install .```
