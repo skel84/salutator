@@ -8,7 +8,7 @@ Here are the steps
 1. Clone the repo and move into the helm charts folder: ```git clone https://github.com/skel84/salutator.git && cd salutator/helm-charts```
 2. Initialize Helm: ```helm init```
 3. Wait until Helm is ready 
-4. Install the salutator: ```helm install .```
+4. Install the salutator: ```helm install salutator```
 5. Wait until the pods are ready. The fronted pod might fail in the first try if the DB is not ready. The process can be sped up by scaling down and up the service:
 ```sh
 kubectl scale deployment salutator --replicas=0
